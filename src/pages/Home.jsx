@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 
-const images = [  '/images/Pictures/building_front_2.jpeg',
+const images = [  
+  '/images/Pictures/building_front_2.jpeg',
   '/images/Pictures/building_front_with_sign.jpeg',
   '/images/Pictures/rear_parking.jpeg',
 ];
