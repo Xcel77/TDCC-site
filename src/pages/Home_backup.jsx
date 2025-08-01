@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 
 const images = [  
   '/images/Pictures/building_front_2.jpeg',
-  '/images/Pictures/building_front_with_sign.jpeg',
+  '/images/Pictures/building_front_w                {/* Testimonials */}
+        <section className="testimonials-section">
+          <h2>What Parents Say</h2>
+          <TestimonialCarousel />
+        </section>.jpeg',
   '/images/Pictures/rear_parking.jpeg',
 ];
 
@@ -38,11 +42,6 @@ function PhotoCarousel() {
     setIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   }
 
-  // Go to specific image
-  const goToSlide = (slideIndex) => {
-    setIndex(slideIndex);
-  };
-
   useEffect(() => {
     const interval = setInterval(() => {
       next();
@@ -52,42 +51,11 @@ function PhotoCarousel() {
 
   return (
     <div className="photo-carousel">
-      <div className="carousel-container">
-        <button 
-          className="carousel-arrow carousel-arrow-left" 
-          onClick={prev}
-          aria-label="Previous image"
-        >
-          ‹
-        </button>
-        
-        <div className="carousel-image-container">
-          <img
-            src={images[index]}
-            alt={`Trinity Day Care Center ${index + 1}`}
-            className="carousel-image"
-          />
-        </div>
-        
-        <button 
-          className="carousel-arrow carousel-arrow-right" 
-          onClick={next}
-          aria-label="Next image"
-        >
-          ›
-        </button>
-      </div>
-      
-      <div className="carousel-dots">
-        {images.map((_, imageIndex) => (
-          <button
-            key={imageIndex}
-            className={`carousel-dot ${imageIndex === index ? 'active' : ''}`}
-            onClick={() => goToSlide(imageIndex)}
-            aria-label={`Go to image ${imageIndex + 1}`}
-          />
-        ))}
-      </div>
+      <img
+        src={images[index]}
+        alt={`Carousel ${index + 1}`}
+        className="carousel-image"
+      />
     </div>
   );
 }
@@ -179,11 +147,14 @@ function Home() {
         {/* Photo Carousel */}
         <PhotoCarousel />
 
-        {/* Testimonials */}
+                {/* Testimonials */}
         <section className="testimonials-section">
           <h2>What Parents Say</h2>
-          <TestimonialCarousel />
-        </section>
+          <blockquote>"Our child has blossomed here! The caring teachers and engaging programs make all the difference." — Sarah P.</blockquote>
+          <blockquote>
+            "A wonderful place that truly cares about each child’s happiness and development." — Michael R.
+          </blockquote>
+        </section>     
 
         {/* Call to Action Buttons */}
         <section className="cta-section">
@@ -201,50 +172,25 @@ function Home() {
           </button>
         </section>
 
+
+
         {/* Contact Info */}
         <section className="contact-section">
-          <div className="contact-container">
-            <div className="contact-info">
-              <h2>Contact Us</h2>
-              <div className="contact-item">
-                <p>
-                  <span className="icon">📞</span>
-                  <strong>Phone:</strong> 
-                  <a href="tel:717-530-5315" className="map-link">717-530-5315</a>
-                </p>
-              </div>
-              <div className="contact-item">
-                <p>
-                  <span className="icon">📧</span>
-                  <strong>Email:</strong> 
-                  <a href="mailto:tdcc2012@gmail.com" className="map-link">tdcc2012@gmail.com</a>
-                </p>
-              </div>
-              <div className="contact-item">
-                <p>
-                  <span className="icon">📍</span>
-                  <strong>Address:</strong>
-                  <a
-                    href="https://www.google.com/maps/search/?api=1&query=118+W+Main+St,+Walnut+Bottom,+PA+17266"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="map-link"
-                  >
-                    118 W Main St, Walnut Bottom, PA 17266
-                  </a>
-                </p>
-              </div>
-            </div>
-            
-            <div className="map-container">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.2875!2d-77.5891!3d40.1478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c9b234567890ab%3A0x1234567890abcdef!2s118%20W%20Main%20St%2C%20Walnut%20Bottom%2C%20PA%2017266!5e0!3m2!1sen!2sus!4v1699123456789!5m2!1sen!2sus&q=118+W+Main+St,+Walnut+Bottom,+PA+17266"
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Trinity Day Care Center Location"
-              ></iframe>
-            </div>
+          <div className="contact-info">
+            <h2>Contact Us</h2>
+            <p>📞 Phone: 717-530-5315</p>
+            <p>📧 Email: tdcc2012@gmail.com</p>
+            <p>
+              📍 Address:{' '}
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=118+W+Main+St,+Walnut+Bottom,+PA+17266"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="map-link"
+              >
+                118 W Main St, Walnut Bottom, PA 17266
+              </a>
+            </p>
           </div>
         </section>
 

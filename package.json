@@ -2,7 +2,6 @@
   "name": "daycare-website",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://xcel77.github.io/TDCC-site",
   "type": "module",
   "scripts": {
     "dev": "vite",
