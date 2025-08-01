@@ -1,0 +1,148 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* New colors */
+  --color-bg: #FDF6E3;         /* light cream background */
+  --color-accent: #F5CBA7;     /* peach accents */
+  --color-cta: #85C1E9;        /* buttons, call-to-action */
+  --color-header-text: #2E4053;/* header / primary text */
+  --color-card-bg: #F5CBA7;    /* white cards and section backgrounds */
+
+  color-scheme: light dark;
+
+  /* Set base text color and background using new palette */
+  color: var(--color-header-text);
+  background-color: var(--color-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  color: var(--color-cta);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Body */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Remove flex centering to allow normal flow */
+  /* display: flex; place-items: center; */
+  background-color: var(--color-bg);
+  color: var(--color-header-text);
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  color: var(--color-header-text);
+}
+
+/* Buttons */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-cta);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.25s;
+  box-shadow: 0 2px 5px rgba(133, 193, 233, 0.4);
+  border: 1px solid transparent;
+}
+button:hover {
+  background-color: #639cd9;  /* Slightly darker blue */
+  border-color: var(--color-accent);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Card and section backgrounds */
+section {
+  background-color: var(--color-card-bg);
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(46, 64, 83, 0.1);
+}
+
+/* Navbar styles override example */
+nav {
+  background-color: var(--color-cta);
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+}
+
+nav li {
+  margin-right: 25px;
+}
+
+nav a {
+  color: var(--color-header-text);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+nav a:hover {
+  color: var(--color-cta);
+}
+
+/* Inputs (for your login page, etc.) */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: var(--color-cta);
+  box-shadow: 0 0 6px var(--color-cta);
+  outline: none;
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+  }
+  nav li {
+    margin-bottom: 10px;
+  }
+}
