@@ -68,7 +68,7 @@ function Navbar() {
               <span className="contact-icon">📞</span>
               <span className="contact-text">717-530-5315</span>
             </a>
-            <a href="mailto:tdcc2012@gmail.com" className="contact-button email-button">
+            <a href="mailto:tdcco012@gmail.com" className="contact-button email-button">
               <span className="contact-icon">📧</span>
               <span className="contact-text">Email Us</span>
             </a>

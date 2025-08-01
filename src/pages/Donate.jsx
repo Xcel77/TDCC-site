@@ -146,7 +146,7 @@ function Donate() {
               </a>
 
               <a
-                href="mailto:tdcc2012@gmail.com?subject=Zelle Donation"
+                href="mailto:tdcco2012@gmail.com?subject=Zelle Donation"
                 className="donation-method zelle"
               >
                 <ZelleIcon />
@@ -244,7 +244,7 @@ function Donate() {
                 <p>
                   <span className="icon">📧</span>
                   <strong>Email:</strong> 
-                  <a href="mailto:tdcc2012@gmail.com" className="map-link">tdcc2012@gmail.com</a>
+                  <a href="mailto:tdcco2012@gmail.com" className="map-link">tdcc2012@gmail.com</a>
                 </p>
               </div>
               <div className="contact-item">
