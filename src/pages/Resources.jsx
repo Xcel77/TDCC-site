@@ -162,7 +162,7 @@ function Resources() {
                 <h4>📧 Email Support</h4>
                 <p>Send us an email and we'll respond as soon as possible with the help you need.</p>
                 <a href="mailto:tdcco2012@gmail.com?subject=Resource Help Request" className="contact-button">
-                  tdcc2012@gmail.com
+                  tdcco2012@gmail.com
                 </a>
               </div>
               

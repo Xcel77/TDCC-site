@@ -111,7 +111,7 @@ function About() {
                 <p>
                   <span className="icon">📧</span>
                   <strong>Email:</strong> 
-                  <a href="mailto:tdcco2012@gmail.com" className="map-link">tdcc2012@gmail.com</a>
+                  <a href="mailto:tdcco2012@gmail.com" className="map-link">tdcco2012@gmail.com</a>
                 </p>
               </div>
               <div className="contact-item">

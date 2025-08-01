@@ -141,7 +141,7 @@ function Events() {
                 <a href="tel:717-530-5315" className="contact-button">
                   📞 Call for Event Details
                 </a>
-                <a href="mailto:tdcc2012@gmail.com?subject=Event Information" className="contact-button">
+                <a href="mailto:tdcco2012@gmail.com?subject=Event Information" className="contact-button">
                   📧 Email Us
                 </a>
               </div>

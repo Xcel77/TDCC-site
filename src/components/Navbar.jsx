@@ -146,7 +146,7 @@ function Navbar() {
                 <span className="mobile-contact-icon">📞</span>
                 Call Us: 717-530-5315
               </a>
-              <a href="mailto:tdcc2012@gmail.com" className="mobile-contact-button">
+              <a href="mailto:tdcco2012@gmail.com" className="mobile-contact-button">
                 <span className="mobile-contact-icon">📧</span>
                 Email Us
               </a>
