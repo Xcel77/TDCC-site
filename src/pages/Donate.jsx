@@ -152,7 +152,7 @@ function Donate() {
                 <ZelleIcon />
                 <div className="method-info">
                   <strong>Zelle</strong>
-                  <span>tdcc2012@gmail.com</span>
+                  <span>tdcco2012@gmail.com</span>
                 </div>
               </a>
             </div>
@@ -166,7 +166,8 @@ function Donate() {
                 <div className="method-icon">✉️</div>
                 <div className="method-details">
                   <strong>Mail a Check</strong>
-                  <p>Make checks payable to "Trinity Day Care Center"</p>
+                  <p>Make checks payable to:</p>
+                  <p>"Trinity Day Care Center"</p>
                   <address>
                     118 W Main St<br/>
                     Walnut Bottom, PA 17266
@@ -178,7 +179,7 @@ function Donate() {
                 <div className="method-icon">🏢</div>
                 <div className="method-details">
                   <strong>In-Person</strong>
-                  <p>Drop off donations during business hours</p>
+                  <p>Drop off donations during business hours.</p>
                   <p>Monday - Friday: 6:30 AM - 6:00 PM</p>
                 </div>
               </div>
