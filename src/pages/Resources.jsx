@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import Papa from 'papaparse';
-
-// Replace with your published CSV URL for the Resources tab
-const RESOURCES_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTYHlWOKHAN9AshZ9ZBbQWDXGB8SO0aUqq0JZUgAww9y6IeT03pgaF1DU0oJMI86t-IQAo1_ak3Fglu/pub?output=csv';
+import { fetchSheetData } from '../utils/googleSheets';
 
 function Resources() {
   const [resources, setResources] = useState([]);
@@ -10,21 +7,10 @@ function Resources() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(RESOURCES_CSV_URL)
-      .then((response) => response.text())
-      .then((csvText) => {
-        Papa.parse(csvText, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            setResources(results.data);
-            setLoading(false);
-          },
-          error: (err) => {
-            setError(err.message);
-            setLoading(false);
-          },
-        });
+    fetchSheetData('Resources')
+      .then((data) => {
+        setResources(data);
+        setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
@@ -60,7 +46,7 @@ function Resources() {
             <p>Loading resources...</p>
           </div>
         )}
-        
+
         {error && (
           <div className="error-container">
             <p>❌ Error loading resources: {error}</p>
@@ -85,10 +71,10 @@ function Resources() {
                     </div>
                     <h3 className="resource-title">{resource.Name}</h3>
                   </div>
-                  
+
                   <div className="resource-content">
                     <p className="resource-description">{resource.Description}</p>
-                    
+
                     <div className="resource-actions">
                       <a
                         href={resource.Link}
@@ -99,7 +85,7 @@ function Resources() {
                         <span className="button-icon">⬇️</span>
                         Download
                       </a>
-                      
+
                       <a
                         href={resource.Link}
                         target="_blank"
@@ -126,19 +112,19 @@ function Resources() {
               <h3>Enrollment Forms</h3>
               <p>Complete enrollment packages and registration documents for new families.</p>
             </div>
-            
+
             <div className="quick-link-card">
               <div className="quick-link-icon">🏥</div>
               <h3>Health & Safety</h3>
               <p>Medical forms, immunization requirements, and safety protocols.</p>
             </div>
-            
+
             <div className="quick-link-card">
               <div className="quick-link-icon">📅</div>
               <h3>Policies & Procedures</h3>
               <p>Parent handbook, pickup/drop-off policies, and center guidelines.</p>
             </div>
-            
+
             <div className="quick-link-card">
               <div className="quick-link-icon">💰</div>
               <h3>Financial Information</h3>
@@ -157,7 +143,7 @@ function Resources() {
                 <p>Call us during business hours for immediate assistance with documents or questions.</p>
                 <a href="tel:717-530-5315" className="contact-button">717-530-5315</a>
               </div>
-              
+
               <div className="help-item">
                 <h4>📧 Email Support</h4>
                 <p>Send us an email and we'll respond as soon as possible with the help you need.</p>
@@ -165,7 +151,7 @@ function Resources() {
                   tdcco2012@gmail.com
                 </a>
               </div>
-              
+
               <div className="help-item">
                 <h4>🏢 In-Person</h4>
                 <p>Visit our office during business hours. We're happy to help you with any documents or forms.</p>

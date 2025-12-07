@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import Papa from 'papaparse';
-
-// Replace with your actual published CSV URL from Google Sheets
-const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrdIG2-leUoe3ehO6G4MYrlUhnKuDAWbB8lT2LDpD_C3k5ipjHWR-ohU4kywxKFnHl8olvuDAVPyGt/pub?output=csv';
+import { fetchSheetData } from '../utils/googleSheets';
 
 function Staffing() {
   const [staffList, setStaffList] = useState([]);
@@ -10,21 +7,10 @@ function Staffing() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(SHEET_CSV_URL)
-      .then((response) => response.text())
-      .then((csvText) => {
-        Papa.parse(csvText, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            setStaffList(results.data);
-            setLoading(false);
-          },
-          error: (err) => {
-            setError(err.message);
-            setLoading(false);
-          },
-        });
+    fetchSheetData('Staff')
+      .then((data) => {
+        setStaffList(data);
+        setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
@@ -48,7 +34,7 @@ function Staffing() {
             <p>Loading our wonderful staff...</p>
           </div>
         )}
-        
+
         {error && (
           <div className="error-container">
             <p>❌ Error loading staff data: {error}</p>
@@ -69,7 +55,7 @@ function Staffing() {
                   <div className="staff-header">
                     <h2 className="staff-name">{staff.Name}</h2>
                   </div>
-                  
+
                   <div className="staff-content">
                     <div className="staff-image-container">
                       {staff.Image ? (
@@ -95,22 +81,22 @@ function Staffing() {
                         <span className="info-icon">🏫</span>
                         <strong>Classroom:</strong> {staff.Classroom}
                       </div>
-                      
+
                       <div className="staff-info-item">
                         <span className="info-icon">🎬</span>
                         <strong>Favorite Movie:</strong> {staff['Favorite Movie']}
                       </div>
-                      
+
                       <div className="staff-info-item quote-item">
                         <span className="info-icon">💭</span>
-                        <strong>Favorite Quote:</strong> 
+                        <strong>Favorite Quote:</strong>
                         <em>"{staff['Favorite Quote']}"</em>
                       </div>
-                      
+
                       <div className="staff-info-item">
                         <span className="info-icon">🎨</span>
                         <strong>Favorite Color:</strong>
-                        <span 
+                        <span
                           className="color-display"
                           style={{ color: staff['Favorite Color']?.toLowerCase() || 'inherit' }}
                         >
