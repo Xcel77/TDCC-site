@@ -1,21 +1,40 @@
 import { useEffect, useState } from 'react';
 import { fetchSheetData } from '../utils/googleSheets';
 
-// Function to convert Google Drive URLs to direct image URLs
-function convertGoogleDriveUrl(url) {
-  if (!url) return '';
+// Function to convert various share URLs to direct image URLs
+function convertImageUrl(url) {
+  if (!url || typeof url !== 'string') return '';
   
-  // Check if it's a Google Drive URL
-  const driveRegex = /(?:https:\/\/drive\.google\.com\/file\/d\/)([a-zA-Z0-9-_]+)(?:\/.*)?/;
-  const match = url.match(driveRegex);
+  url = url.trim();
   
-  if (match) {
-    const fileId = match[1];
-    // Convert to direct image URL
-    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  try {
+    new URL(url);
+  } catch {
+    return '';
   }
   
-  // Return original URL if it's not a Google Drive URL
+  // 1. Google Drive Links
+  // Match format: https://drive.google.com/file/d/FILE_ID/view...
+  const driveFileRegex = /\/file\/d\/([a-zA-Z0-9_-]+)/;
+  const driveFileMatch = url.match(driveFileRegex);
+  if (driveFileMatch && driveFileMatch[1]) {
+    // Google Drive changed policies and blocks uc?export=view with Cross-Origin-Resource-Policy: same-site.
+    // Using lh3.googleusercontent.com/d/FILE_ID bypasses this restriction.
+    return `https://lh3.googleusercontent.com/d/${driveFileMatch[1]}=w1000`;
+  }
+  
+  // Match format: https://drive.google.com/open?id=FILE_ID
+  const driveOpenRegex = /[?&]id=([a-zA-Z0-9_-]+)/;
+  if (url.includes('drive.google.com') && url.match(driveOpenRegex)) {
+    const match = url.match(driveOpenRegex);
+    return `https://lh3.googleusercontent.com/d/${match[1]}=w1000`;
+  }
+
+  // 2. Google Photos or other direct links
+  // Previously used proxies like cors-anywhere require manual unlock or block requests.
+  // Direct image addresses (lh3.googleusercontent.com) typically work fine in <img> tags.
+  // For photos.app.goo.gl sharing links, it's an HTML page, so it will fail to load as an image.
+  // Users should use Google Drive or direct image addresses.
   return url;
 }
 
@@ -78,13 +97,16 @@ function Staffing() {
                     <div className="staff-image-container">
                       {staff.Image ? (
                         <img
-                          src={convertGoogleDriveUrl(staff.Image)}
+                          src={convertImageUrl(staff.Image)}
                           alt={`${staff.Name}'s photo`}
                           className="staff-image"
+                          referrerPolicy="no-referrer"
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = '';
-                            e.target.className = 'staff-image-placeholder';
+                            e.target.style.display = 'none';
+                            if (e.target.parentElement) {
+                              e.target.parentElement.classList.add('staff-image-placeholder');
+                            }
                           }}
                         />
                       ) : (
