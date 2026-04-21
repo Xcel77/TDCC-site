@@ -1,6 +1,24 @@
 import { useEffect, useState } from 'react';
 import { fetchSheetData } from '../utils/googleSheets';
 
+// Function to convert Google Drive URLs to direct image URLs
+function convertGoogleDriveUrl(url) {
+  if (!url) return '';
+  
+  // Check if it's a Google Drive URL
+  const driveRegex = /(?:https:\/\/drive\.google\.com\/file\/d\/)([a-zA-Z0-9-_]+)(?:\/.*)?/;
+  const match = url.match(driveRegex);
+  
+  if (match) {
+    const fileId = match[1];
+    // Convert to direct image URL
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  }
+  
+  // Return original URL if it's not a Google Drive URL
+  return url;
+}
+
 function Staffing() {
   const [staffList, setStaffList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,7 +78,7 @@ function Staffing() {
                     <div className="staff-image-container">
                       {staff.Image ? (
                         <img
-                          src={staff.Image}
+                          src={convertGoogleDriveUrl(staff.Image)}
                           alt={`${staff.Name}'s photo`}
                           className="staff-image"
                           onError={(e) => {
